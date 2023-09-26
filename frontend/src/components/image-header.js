@@ -1,9 +1,8 @@
 import React from "react";
+//import myimage from "front-endg4/frontend/src/components/images/Screen Shot 2020-07-08 at 1.23.38 PM.png";
 import "./header.css";
 
 const TextImageSection = () => {
-  const imageUrl =
-    "https://o.remove.bg/downloads/fd9a2e7e-d1ab-4c6d-b1a0-37fdf354fb26/1679548125219-removebg-preview.png";
 
   return (
     <>
@@ -21,13 +20,13 @@ const TextImageSection = () => {
           individual, I aim to turn challenging ideas into reality.
         </p>
         <img
-          src={imageUrl}
+          src="./myimage.png"
           alt="Layla Abo Saad"
           className="image-header text-image-section"
         />
       </div>
     </>
-  );
+);
 };
 
 //return (
