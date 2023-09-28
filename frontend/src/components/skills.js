@@ -1,39 +1,47 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import "./skills.css"
+
+
 
 const Skills = () => {
+  const [images, setImages] = useState([]);
+
+  useEffect(() => {
+    const fetchImages = async () => {
+      try {
+        const response = await axios.get('http://localhost:5000/api/skills'); // Assuming your API route for getting skills is '/api/skills'
+        const skills = response.data;
+        const imageUrls = skills.map(skill => skill.image);
+        setImages(imageUrls);
+      } catch (error) {
+        console.error('Failed to fetch images:', error);
+      }
+    };
+
+    fetchImages();
+  }, []);
+
   return (
-    <Skills>
-       <h1>SKILLS</h1>
-       <div className="container1">
 
-        <div className="container-skills">
-            <div className="cont-img">
-              <img src="./lamp.png" alt="lamp" />
-            </div>
-            </div>
+    <div className='container1'>
+   {images.map((imageUrl, index) => (
+      <div className='cont-img' style=
+      {{backgroundImage:`url(http://localhost:5000/images/${imageUrl})`,
+      backgroundSize: 'cover', 
+        width: '150px', 
+        height: '150px',
+        backgroundRepeat: 'no-repeat',
+      }}>
+    
 
-            <div className="container-skills">
-            <div className="cont-img">
-              <img src="./mern.png" alt="mern"/>
-            </div>
-            </div>
-
-        <div className="container-skills">
-            <div className="cont-img">
-              <img src="./office.png" alt="office" />
-            </div>
-            </div>
-            
-            <div className="container-skills">
-            <div className="cont-img">
-             
-              <img src="./wordpress.png" alt="Wordpress" />
-            </div>
-            </div>
-
+          
       </div>
-    </Skills>
+      ))}
+    </div>
   );
 };
+
+
 
 export default Skills;
