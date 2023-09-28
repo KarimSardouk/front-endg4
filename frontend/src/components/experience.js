@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useState, useEffect} from "react";
+import axios from "axios";
+
 function Experience() {
   let currentCard = 1;
 
@@ -15,6 +17,30 @@ function Experience() {
       currentCard === 2 ? "block" : "none";
   }
 
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    const fetchProjects = async () => {
+      try {
+        const response = await axios.get('http://localhost:5000/api/experience');
+        const experiences = response.data;
+        const data = experiences.map((experience) => ({
+          companyName: experience.company_name,
+          jobTitle: experience.job_title,
+          startDate: experience.start_date,
+          endDate: experience.end_date,
+          accomplishments: experience.accomplishments
+        }));
+        setData(data);
+        console.log(data);
+      } catch (error) {
+        console.error('Failed to fetch images:', error);
+      }
+    };
+
+    fetchProjects();
+  }, []);
+
   return (
     <div>
       <h1>EXPERIENCE</h1>
@@ -25,73 +51,25 @@ function Experience() {
             &lt;
           </div>
         </div>
-        <div className="card1">
-          <div className="card">
-            <div className="container">
-              <div className="title-date">
-                <div className="title">
-                  <h2>Full Stack Web Developer Way2Go </h2>
+        
+        {data.map((experience, index) => (
+          <div key={index} className={`card${index + 1}`} style={{ display: currentCard === index + 1 ? "block" : "none" }}>
+            <div className="card">
+              <div className="container">
+                <div className="title-date">
+                  <div className="title">
+                    <h2>{experience.companyName} </h2>
+                  </div>
+                  <div className="date">
+                    <h2>{experience.startDate}</h2>
+                  </div>
                 </div>
-                <div className="date">
-                  <h2>June 2023 - Present</h2>
-                </div>
+                <p>{experience.accomplishments}</p>
               </div>
-              <p>
-                A Canadian-based company that offers a full 360-degree Digital
-                Transformation and Marketing Solutions to clients.
-              </p>
-              <p>
-                ● Collaborated with a diverse team to deliver high-quality
-                websites to clients.
-              </p>
-              <p>
-                ●Worked on both back-end and front-end using Laravel and ReactJs
-                respectively.
-              </p>
-              <p>
-                ● Contributed to the optimization and maintenance of existing
-                websites, ensuring smooth performance and enhancing user
-                experience.
-              </p>
             </div>
           </div>
-        </div>
-        <div className="card2">
-          <div className="card">
-            <div className="container">
-              <div className="title-date">
-                <div className="title">
-                <h2>Full Stack Web Developer Codi Tech </h2>
-                </div>
-                <div className="date">
-                <h2>November 2022 – June 2023</h2>
-              </div>
-              </div>
-              <p>
-                An intensive boot-camp that aims to prepare students for the
-                latest technology in programming to gain job skills needed in
-                the market. I had the honor to work on several projects in teams
-                that increased my collaboration skills and my leadership
-                abilities.{" "}
-              </p>
-              <p>
-                {" "}
-                ● Developed various projects using different languages and
-                platforms in the back-end including NodeJS, Express, PHP,
-                Laravel, SQL and MongoDB.
-              </p>
-              <p> ● Worked on several front-end projects by using ReactJS.</p>
-              <p>
-                ● Used WordPress to create several websites including portfolios
-                and e-commerce.
-              </p>
-              <p>
-                ● Applied the AGILE methodology while working with diverse
-                teams.
-              </p>
-            </div>
-          </div>
-        </div>
+        ))}
+
         <div className="arrow-container">
           <div className="right-arrow arrow" onClick={() => showCard("right")}>
             &gt;
