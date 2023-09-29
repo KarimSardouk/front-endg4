@@ -1,5 +1,5 @@
 import React from "react";
-//import myimage from "front-endg4/frontend/src/components/images/Screen Shot 2020-07-08 at 1.23.38 PM.png";
+import myimage from "../img/myimage.png";
 import "./header.css";
 
 const TextImageSection = () => {
@@ -20,7 +20,8 @@ const TextImageSection = () => {
           individual, I aim to turn challenging ideas into reality.
         </p>
         <img
-          src="./myimage.png"
+          // src={require('./myimage.png')}
+          src={myimage}
           alt="Layla Abo Saad"
           className="image-header text-image-section"
         />
