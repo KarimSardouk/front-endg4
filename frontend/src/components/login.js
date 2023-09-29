@@ -1,21 +1,19 @@
-import React from 'react';
-import 'login.css';
+import React, { useState } from 'react';
+import "./login.css";
 const Login = () => {
+  const [changePasswordMode, setChangePasswordMode] = useState(false);
+  const [newPassword, setNewPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
 
-  const getUserInput = () => {
-    // Get the value from the input field
-    let userInput = document.getElementById("input-name").value;
-    let passInput = document.getElementById("input-pass").value;
-    let confirmPass = document.getElementById("conf-pass").value;
+  const handleChangePasswordClick = () => {
+    setChangePasswordMode(true);
+  }
 
-    // Do something with the user input
-    alert("You entered: " + userInput);
-    alert("You entered: " + passInput);
-    alert("You entered: " + confirmPass);
-
-    //if statement
-    if (passInput === confirmPass) {
-      alert("Your passwords match!");
+  const handleSavePasswordClick = () => {
+    if (newPassword === confirmPassword) {
+      // Add code to save the new password
+      alert("Password changed successfully!");
+      setChangePasswordMode(false);
     } else {
       // Apply animation if passwords don't match
       let cube = document.querySelector(".cube");
@@ -37,19 +35,38 @@ const Login = () => {
         id="input-name"
         className="input"
       />
-      <input
-        type="password"
-        placeholder="insert password here"
-        id="input-pass"
-        className="input"
-      />
-      <input
-        type="password"
-        placeholder="confirm password here"
-        id="conf-pass"
-        className="input"
-      />
-      <button className="submit" onClick={getUserInput}><b>SUBMIT</b></button>
+      {changePasswordMode ? (
+        <>
+          <input
+            type="password"
+            placeholder="enter new password"
+            id="new-pass"
+            className="input"
+            value={newPassword}
+            onChange={(e) => setNewPassword(e.target.value)}
+          />
+          <input
+            type="password"
+            placeholder="confirm password here"
+            id="conf-pass"
+            className="input"
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+          />
+          <button className="submit" onClick={handleSavePasswordClick}><b>SAVE</b></button>
+        </>
+      ) : (
+        <>
+          <input
+            type="password"
+            placeholder="insert password here"
+            id="input-pass"
+            className="input"
+          />
+          <button className="submit"><b>SUBMIT</b></button>
+          <button className="submit" onClick={handleChangePasswordClick}><b>Change Password</b></button>
+        </>
+      )}
     </div>
   );
 }

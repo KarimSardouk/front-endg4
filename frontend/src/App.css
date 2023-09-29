@@ -124,3 +124,39 @@ h1 {
 @media only screen and (min-width: 992px) {}
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1200px) {}
+.cube {
+  width: 500px;
+  height: 500px;
+  background-color: #FBB38C;
+  border-radius: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  margin: 0 auto;
+}
+.submit {
+  background-color: #ff8646;
+  border-radius: 20px;
+  width: 400px;
+  height: 50px;
+  margin: 0 auto;
+  font-size: 25px;
+}
+.input {
+  border-radius: 10px;
+  width: 400px;
+  height: 50px;
+  margin: 0 auto;
+  font-size: 25px;
+}
+p {
+  margin: 0 auto;
+  font-size: 45px;
+}
+@keyframes tilt-shaking {
+    0% { transform: rotate(0deg); }
+    25% { transform: rotate(5deg); }
+    50% { transform: rotate(0deg); }
+    75% { transform: rotate(-5deg); }
+    100% { transform: rotate(0deg); }
+  }
