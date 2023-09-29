@@ -10,9 +10,11 @@ header {
   /* Style the navigation bar in dark orange */
   nav {
     background-color: darkorange;
+    color: black;
   }
   
   .container {
+    color: black;
     width: 80%;
     margin: 0 auto;
     display: flex;
@@ -81,6 +83,7 @@ header {
   }
   
   .paragraph {
+    color : white;
     display: flex;
     flex-direction: row;
     justify-content: center;

@@ -21,10 +21,11 @@ import DownloadButton from './components/DownloadButton';
 function App() {
   return (
     <div>
-
-    <h1>SKILLS</h1>
-
+      <Header/>
+      <TextImageSection/>
       <Skills />
+      <Experience />
+      <Projects />
       <DownloadButton />
       <GitHubLink />
       <LinkedInImage />
